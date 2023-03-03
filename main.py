@@ -1,8 +1,6 @@
 import csv
 
-from utils.github_handler import GithubHandler
-from utils.text_processor import Processor
-from utils.consts import TARGET
+from utils import *
 
 
 def get_org_assignments():
