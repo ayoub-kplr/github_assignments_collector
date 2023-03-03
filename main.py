@@ -34,7 +34,7 @@ def unsolved_assignments(org_assignments, done_assignments):
 if __name__ == '__main__':
     g = GithubHandler()
     g.get_repos_users()
-    assignments = get_org_assignments()
-    print(assignments)
+    get_org_assignments()
+    # print(assignments)
 
 # get_repos_users()

@@ -2,7 +2,7 @@ import csv
 
 from github import Github
 import time
-from .consts import TARGET, ORG, TOKEN
+from .consts import TARGET, ORG, TOKEN, CSV_DIR
 
 
 class GithubHandler:
@@ -13,7 +13,7 @@ class GithubHandler:
     def get_repos_users(self):
         repos = self.user.get_repos()
 
-        f = open("{}-{}.csv".format(TARGET, time.strftime("%Y%m%d-%H%M%S")), 'w', newline='')
+        f = open("{}/{}-{}.csv".format(CSV_DIR,TARGET, time.strftime("%Y%m%d-%H%M%S")), 'w', newline='')
         writer = csv.writer(f)
         writer.writerow([TARGET])
         for repo in repos:
@@ -31,6 +31,6 @@ class GithubHandler:
             if file_content.type == "dir":
                 contents.extend(repo.get_contents(file_content.path))
             elif file_content.type == "file" and file_content.name.endswith("ipynb"):
-                names.append(file_content.name)
+                names.append(file_content.name.encode('utf-8'))
 
         return names
